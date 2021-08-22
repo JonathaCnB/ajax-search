@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{series.name}}|detail{% endblock title %}
+
+{% block content %}
+
+    <div class="jumbotron">
+        <div class="container">
+            <h4>{{series.name}}</h4>
+            <img src="{{series.image}}" alt='{{series.name}}' />
+        </div>
+    </div>
+
+{% endblock content %}
