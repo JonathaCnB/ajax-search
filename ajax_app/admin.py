@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from ajax_app.models import WebSeries
+
+admin.site.register(WebSeries)
