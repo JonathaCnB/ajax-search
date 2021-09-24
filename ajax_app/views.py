@@ -3,9 +3,25 @@ from django.shortcuts import render
 
 from ajax_app.models import WebSeries
 
+from .forms import WebSeriesForm
+
 
 def main_view(request):
     return render(request, "index.html")
+
+
+def photo_add_view(request):
+    form = WebSeriesForm(request.POST or None, request.FILES or None)
+    data = {}
+    if request.is_ajax():
+        print(form)
+        if form.is_valid():
+            form.save()
+            data["name"] = form.cleaned_data.get("name")
+            data["status"] = "ok"
+            return JsonResponse(data)
+    context = {"form": form}
+    return render(request, "photo_upload.html", context)
 
 
 def search_result(request):
@@ -20,7 +36,7 @@ def search_result(request):
                 item = {
                     "pk": pos.pk,
                     "name": pos.name,
-                    "image": pos.image,
+                    "image": pos.image.url,
                 }
 
                 data.append(item)

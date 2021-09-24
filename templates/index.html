@@ -35,6 +35,17 @@
 {% endblock style %}
 
 {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a 
+                class='btn btn-primary mt-3' 
+                href="{% url 'upload_image'%}">
+                Cadastrar Novas Series
+            </a>
+        </div>
+    </div>
+</div>
 <div class="w-100 text-center">
     <form autocomplete='off' id="search-form" method='post'>
         {% csrf_token %}
@@ -47,10 +58,9 @@
     </div>
 </div>
 {% endblock content %}
-
+    
 {% block end_sj %}
 <script>
-
     const sendSearchData = (series) => {
         $.ajax({
             type: 'POST',
